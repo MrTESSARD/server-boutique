@@ -1,0 +1,41 @@
+{
+  "name": "server-boutique",
+  "version": "1.0.0",
+  "description": "Une boutique en ligne avec Mongo, Express, React 17, Node (MERN), GraphQL, Apollo Client, Paypal, Google Auth / Fullstack React 17, GraphQL, Apollo, Google Sign & Paypal",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrTESSARD/server-boutique.git"
+  },
+  "keywords": [
+    "Mongo",
+    "Express",
+    "React",
+    "17",
+    "Node",
+    "(MERN)",
+    "GraphQL",
+    "Apollo",
+    "Client",
+    "Paypal",
+    "Google",
+    "Auth"
+  ],
+  "author": "MrTESSARD Dimitri",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/MrTESSARD/server-boutique/issues"
+  },
+  "homepage": "https://github.com/MrTESSARD/server-boutique#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0",
+    "nodemon": "^2.0.20"
+  }
+}
