@@ -3,6 +3,14 @@ const express = require('express')
 const cors = require('cors')
 const router = express()
 const mongoDBClient = require('./mongoClient')
+const { graphqlHTTP } = require('express-graphql')
+const schema = require('./schemas/index.js')
+
+router.use(cors())
+
+router.get('/', (req, res) => {
+  res.send('Hello Express! 🎉 ')
+})
 
 //API Rest
 const Product = require('./models/product')
@@ -28,12 +36,17 @@ router.get('/products/:category', async (req, res) => {
   }
 })
 
-router.use(cors())
 
-router.get('/', (req, res) => {
-  res.send('Hello Express! 🎉 ')
-})
 
+//GraphQL UI
+router.use(
+  '/graphql',
+  graphqlHTTP({
+    schema:schema,
+    graphiql: true,
+  }),
+);
+ 
 
 
 router.listen(PORT, () => {
