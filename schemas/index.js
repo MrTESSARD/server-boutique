@@ -80,8 +80,14 @@ const RootQuery = new GraphQLObjectType({//2
           resolve(parent, args){
             return Product.find({category: args.category})
           }
-          
+        },
 
+        orders:{//type de requête demande de produit par objet aves des paramètres demandés par client
+          type:new GraphQLList(OrderType),//
+          args: {ownerId: { type: GraphQLString}},
+          resolve(parent, args){
+            return Order.find({ownerId: args.ownerId})
+          }
         }
       },
     })
