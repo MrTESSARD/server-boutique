@@ -39,6 +39,7 @@ router.get('/products/:category', async (req, res) => {
 
 
 //GraphQL UI
+// http://localhost:4000/graphql
 router.use(
   '/graphql',
   graphqlHTTP({

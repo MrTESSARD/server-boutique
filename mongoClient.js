@@ -6,8 +6,10 @@ const PASSWORD =
   process.env.REACT_APP_ATLAS_CLOUD_PASSWORD;
 const DATABASE_NAME =
   process.env.REACT_APP_ATLAS_CLOUD_DATABASE_NAME;
+const KEY =
+  process.env.REACT_APP_ATLAS_CLOUD_KEY;
 
-const URL = `mongodb+srv://${USERNAME}:${PASSWORD}@cluster-clickcollect.xjcbbz2.mongodb.net/${DATABASE_NAME}?retryWrites=true&w=majority`;
+const URL = `mongodb+srv://${USERNAME}:${PASSWORD}@cluster-clickcollect.${KEY}.mongodb.net/${DATABASE_NAME}?retryWrites=true&w=majority`;
 
 const MongoDBClient = {
   initialize: () => {
