@@ -1,4 +1,4 @@
-const PORT = 4000
+const PORT = 4002
 const express = require('express')
 const cors = require('cors')
 const router = express()
@@ -41,7 +41,9 @@ router.get('/products/:category', async (req, res) => {
 //GraphQL UI
 // http://localhost:4000/graphql
 router.use(
-  '/graphql',
+  '/graphqlclick',
+  cors(), // Ajoutez cette ligne
+
   graphqlHTTP({
     schema:schema,
     graphiql: true,
