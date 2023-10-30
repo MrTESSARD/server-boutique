@@ -1,10 +1,13 @@
 const PORT = 4002
 const express = require('express')
+const { readFileSync } = require('fs');
+const { createServer } = require('https');
 const cors = require('cors')
 const router = express()
 const mongoDBClient = require('./mongoClient')
 const { graphqlHTTP } = require('express-graphql')
 const schema = require('./schemas/index.js')
+
 
 router.use(cors())
 
@@ -50,9 +53,17 @@ router.use(
   }),
 );
  
+// Configuration des options HTTPS
+const options = {
+  key: readFileSync("certLetVPS/VPS_LC2/privkey.pem"),
+  cert: readFileSync("certLetVPS/VPS_LC2/fullchain.pem"),
+};
 
+// Création du serveur HTTPS
+const server = createServer(options, router);
 
-router.listen(PORT, () => {
-  console.log(`Example router listening on PORT ${PORT} `)
-  mongoDBClient.initialize()
-})
+// Démarrage du serveur HTTPS sur le port 8443
+server.listen(PORT, () => {
+  console.log(`Le serveur est en écoute sur le port ${PORT} en mode HTTPS.`);
+  mongoDBClient.initialize();
+});
