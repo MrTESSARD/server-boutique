@@ -1,58 +1,51 @@
-const PORT = 4002
-const express = require('express')
-const { readFileSync } = require('fs');
-const { createServer } = require('https');
-const cors = require('cors')
-const router = express()
-const mongoDBClient = require('./mongoClient')
-const { graphqlHTTP } = require('express-graphql')
-const schema = require('./schemas/index.js')
+const PORT = 4002;
+const express = require("express");
+const { readFileSync } = require("fs");
+const { createServer } = require("https");
+const cors = require("cors");
+const router = express();
+const mongoDBClient = require("./mongoClient");
+const { graphqlHTTP } = require("express-graphql");
+const schema = require("./schemas/index.js");
 
+router.use(cors());
 
-router.use(cors())
-
-router.get('/', (req, res) => {
-  res.send('Hello Express! 🎉 ')
-})
+router.get("/", (req, res) => {
+  res.send("Hello Express! 🎉 ");
+});
 
 //API Rest
-const Product = require('./models/product')
-router.get('/products', async (req, res) => {
-  const product = await Product.find({})
+const Product = require("./models/product");
+router.get("/products", async (req, res) => {
+  const product = await Product.find({});
   try {
-    res.send(product)
-    
+    res.send(product);
   } catch (error) {
-    res.status(500).send(err)
-    
+    res.status(500).send(err);
   }
-})
-router.get('/products/:category', async (req, res) => {
-  const category = req.params.category
-  const product = await Product.find({category})
+});
+router.get("/products/:category", async (req, res) => {
+  const category = req.params.category;
+  const product = await Product.find({ category });
   try {
-    res.send(product)
-    
+    res.send(product);
   } catch (error) {
-    res.status(500).send(err)
-    
+    res.status(500).send(err);
   }
-})
-
-
+});
 
 //GraphQL UI
 // http://localhost:4000/graphql
 router.use(
-  '/graphqlclick',
+  "/graphqlclick",
   cors(), // Ajoutez cette ligne
 
   graphqlHTTP({
-    schema:schema,
+    schema: schema,
     graphiql: true,
-  }),
+  })
 );
- 
+
 // Configuration des options HTTPS
 const options = {
   key: readFileSync("certLetVPS/VPS_LC2/privkey.pem"),
